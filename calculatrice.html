@@ -4,115 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculatrice - UtilOutils</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f2f5;
-        }
-        .calculator {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            width: 300px;
-        }
-        .calculator input {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            border: 2px solid #007BFF;
-            border-radius: 5px;
-            text-align: right;
-        }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        .buttons button {
-            padding: 15px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-        .buttons button:hover {
-            background-color: #0056b3;
-        }
-        .buttons button.operator {
-            background-color: #28a745;
-        }
-        .buttons button.operator:hover {
-            background-color: #1e7e34;
-        }
-        .buttons button.equal {
-            background-color: #dc3545;
-            grid-column: span 2;
-        }
-        .buttons button.equal:hover {
-            background-color: #c82333;
-        }
-        .buttons button.clear {
-            background-color: #6c757d;
-        }
-        .buttons button.clear:hover {
-            background-color: #5a6268;
-        }
-        footer {
-            position: fixed;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            color: #343a40;
-            font-size: 0.9em;
-        }
-        a {
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="display" disabled>
+    <header>
+        <h1>Calculatrice</h1>
+    </header>
 
-        <div class="buttons">
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button class="operator" onclick="appendValue('/')">/</button>
+    <main>
+        <div class="calculator">
+            <input type="text" id="display" disabled>
 
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button class="operator" onclick="appendValue('*')">*</button>
+            <div class="buttons">
+                <button onclick="clearDisplay()">C</button>
+                <button onclick="deleteLast()">&#9003;</button>
+                <button onclick="appendValue('/')">/</button>
+                <button onclick="appendValue('*')">*</button>
 
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button class="operator" onclick="appendValue('-')">-</button>
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button onclick="appendValue('-')">-</button>
 
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button class="operator" onclick="appendValue('+')">+</button>
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('6')">6</button>
+                <button onclick="appendValue('+')">+</button>
 
-            <button class="equal" onclick="calculate()">=</button>
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button rowspan="2" onclick="calculate()">=</button>
+
+                <button colspan="2" onclick="appendValue('0')">0</button>
+                <button onclick="appendValue('.')">.</button>
+            </div>
         </div>
-    </div>
+    </main>
 
     <footer>
         &copy; 2024 UtilOutils. <a href="index.html">Retour à l'accueil</a>
@@ -127,11 +55,16 @@
             document.getElementById('display').value = '';
         }
 
+        function deleteLast() {
+            let current = document.getElementById('display').value;
+            document.getElementById('display').value = current.slice(0, -1);
+        }
+
         function calculate() {
+            let expression = document.getElementById('display').value;
             try {
-                const result = eval(document.getElementById('display').value);
-                document.getElementById('display').value = result;
-            } catch (error) {
+                document.getElementById('display').value = eval(expression);
+            } catch {
                 document.getElementById('display').value = 'Erreur';
             }
         }
