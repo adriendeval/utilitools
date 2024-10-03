@@ -1,4 +1,4 @@
-# Bienvenue sur UtiliTools !
+# Bienvenue sur UtilOutils !
 ### Le petit site des petits outils
 
 Ici, vous pouvez utiliser de nombreux outils tels que le convertisseur de bases, le générateur de mot de passe ou encore le convertisseur de code couleur.
