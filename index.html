@@ -4,11 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UtilOutils - Accueil</title>
-    <!-- Lien vers Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome pour les icônes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .jumbotron {
+            background-color: #007bff;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .jumbotron h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .jumbotron p {
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #007bff;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-primary-custom {
+            background-color: #0069d9;
+            border-color: #0062cc;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #0056b3;
+            border-color: #004b9b;
+        }
+    </style>
 </head>
 <body>
+    <!-- Menu de navigation -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -18,99 +75,105 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="convertisseur-bases.html">Convertisseur de bases</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="generateur-mot-de-passe.html">Générateur de mot de passe</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="convertisseur-couleur.html">Convertisseur de couleurs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="calculatrice.html">Calculatrice</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="convertisseur-unites.html">Convertisseur d'unités</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="compteur-caracteres.html">Compteur de caractères</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="convertisseur-bases.html">Convertisseur de bases</a></li>
+                        <li class="nav-item"><a class="nav-link" href="generateur-mot-de-passe.html">Générateur de mot de passe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="convertisseur-couleur.html">Convertisseur de couleurs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="calculatrice.html">Calculatrice</a></li>
+                        <li class="nav-item"><a class="nav-link" href="convertisseur-unites.html">Convertisseur d'unités</a></li>
+                        <li class="nav-item"><a class="nav-link" href="compteur-caracteres.html">Compteur de caractères</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="container my-5">
-        <div class="row text-center">
-            <div class="col">
-                <p class="lead">Bienvenue sur UtilOutils ! Ici, vous avez accès à de nombreux outils conçus pour vous simplifier la vie. Que ce soit un convertisseur de bases, un générateur de mot de passe ou un convertisseur de code couleur, vous trouverez tout ce dont vous avez besoin. Et le mieux ? C'est totalement gratuit et sans pub !</p>
-            </div>
+    <!-- Jumbotron -->
+    <section class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">Bienvenue sur UtilOutils</h1>
+            <p class="lead">Tous les outils qu'il vous faut en un seul endroit. Gratuit et sans pub.</p>
+            <a href="#features" class="btn btn-primary-custom mt-3">Découvrez nos outils</a>
         </div>
+    </section>
 
+    <!-- Section des outils -->
+    <section id="features" class="container">
+        <div class="section-title">Nos Outils</div>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-code feature-icon mb-3"></i>
                         <h5 class="card-title">Convertisseur de bases</h5>
-                        <a href="convertisseur-bases.html" class="btn btn-primary">Utiliser</a>
+                        <p class="card-text">Convertissez entre différentes bases comme binaire, octal, décimal et hexadécimal.</p>
+                        <a href="convertisseur-bases.html" class="btn btn-primary-custom">Utiliser</a>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-key feature-icon mb-3"></i>
                         <h5 class="card-title">Générateur de mot de passe</h5>
-                        <a href="generateur-mot-de-passe.html" class="btn btn-primary">Utiliser</a>
+                        <p class="card-text">Générez des mots de passe sécurisés en quelques clics.</p>
+                        <a href="generateur-mot-de-passe.html" class="btn btn-primary-custom">Utiliser</a>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Convertisseur de code couleur</h5>
-                        <a href="convertisseur-couleur.html" class="btn btn-primary">Utiliser</a>
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-palette feature-icon mb-3"></i>
+                        <h5 class="card-title">Convertisseur de couleurs</h5>
+                        <p class="card-text">Convertissez facilement les codes couleur entre différents formats.</p>
+                        <a href="convertisseur-couleur.html" class="btn btn-primary-custom">Utiliser</a>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-calculator feature-icon mb-3"></i>
                         <h5 class="card-title">Calculatrice</h5>
-                        <a href="calculatrice.html" class="btn btn-primary">Utiliser</a>
+                        <p class="card-text">Effectuez des calculs simples avec notre calculatrice en ligne.</p>
+                        <a href="calculatrice.html" class="btn btn-primary-custom">Utiliser</a>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-ruler feature-icon mb-3"></i>
                         <h5 class="card-title">Convertisseur d'unités</h5>
-                        <a href="convertisseur-unites.html" class="btn btn-primary">Utiliser</a>
+                        <p class="card-text">Convertissez facilement entre différentes unités de mesure.</p>
+                        <a href="convertisseur-unites.html" class="btn btn-primary-custom">Utiliser</a>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-font feature-icon mb-3"></i>
                         <h5 class="card-title">Compteur de caractères</h5>
-                        <a href="compteur-caracteres.html" class="btn btn-primary">Utiliser</a>
+                        <p class="card-text">Comptez rapidement le nombre de caractères dans un texte.</p>
+                        <a href="compteur-caracteres.html" class="btn btn-primary-custom">Utiliser</a>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2024 UtilOutils. Tous droits réservés. <a class="text-white" href="index.html">Retour à l'accueil</a></p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2024 UtilOutils. Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="index.html">Accueil</a> | 
+                <a href="convertisseur-bases.html">Convertisseur de bases</a> | 
+                <a href="generateur-mot-de-passe.html">Générateur de mot de passe</a>
+            </div>
+        </div>
     </footer>
 
     <!-- Bootstrap JS -->
