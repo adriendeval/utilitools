@@ -6,71 +6,117 @@
     <title>UtilOutils - Accueil</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f0f2f5;
         }
         header {
-            background-color: #007BFF;
+            background-color: #343a40;
             color: white;
-            padding: 10px 0;
+            padding: 20px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         h1 {
             margin: 0;
+            font-size: 2.5em;
         }
         main {
-            padding: 20px;
+            padding: 40px;
             text-align: center;
+        }
+        .intro {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
         .tool {
-            display: inline-block;
-            margin: 20px;
-            padding: 20px;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            width: 200px;
-            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        a {
-            text-decoration: none;
+        .tool:hover {
+            transform: translateY(-10px);
+        }
+        .tool h2 {
+            margin-bottom: 10px;
             color: #007BFF;
-            font-weight: bold;
         }
-        footer {
+        .tool a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #007BFF;
+            border: 2px solid #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .tool a:hover {
             background-color: #007BFF;
             color: white;
-            padding: 10px;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            text-align: center;
             position: fixed;
             width: 100%;
             bottom: 0;
-            text-align: center;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Bienvenue sur UtilOutils</h1>
+        <h1>UtilOutils</h1>
     </header>
 
     <main>
-        <p>Ici, vous pouvez utiliser de nombreux outils tels que le convertisseur de bases, le générateur de mot de passe ou encore le convertisseur de code couleur. Tous ces outils ont été conçus dans le but de vous simplifier la vie. Et comme si ça ne suffisait pas, c'est totalement gratuit et sans aucune publicité.</p>
-
-        <div class="tool">
-            <h2>Convertisseur de bases</h2>
-            <a href="convertisseur-bases.html">Utiliser</a>
+        <div class="intro">
+            <p>Bienvenue sur UtilOutils ! Ici, vous avez accès à de nombreux outils conçus pour vous simplifier la vie. Que ce soit un convertisseur de bases, un générateur de mot de passe ou un convertisseur de code couleur, vous trouverez tout ce dont vous avez besoin. Et le mieux ? C'est totalement gratuit et sans pub !</p>
         </div>
 
-        <div class="tool">
-            <h2>Générateur de mot de passe</h2>
-            <a href="generateur-mot-de-passe.html">Utiliser</a>
-        </div>
+        <div class="tools">
+            <div class="tool">
+                <h2>Convertisseur de bases</h2>
+                <a href="convertisseur-bases.html">Utiliser</a>
+            </div>
 
-        <div class="tool">
-            <h2>Convertisseur de code couleur</h2>
-            <a href="convertisseur-couleur.html">Utiliser</a>
+            <div class="tool">
+                <h2>Générateur de mot de passe</h2>
+                <a href="generateur-mot-de-passe.html">Utiliser</a>
+            </div>
+
+            <div class="tool">
+                <h2>Convertisseur de code couleur</h2>
+                <a href="convertisseur-couleur.html">Utiliser</a>
+            </div>
+
+            <div class="tool">
+                <h2>Calculatrice</h2>
+                <a href="calculatrice.html">Utiliser</a>
+            </div>
+
+            <div class="tool">
+                <h2>Convertisseur d'unités</h2>
+                <a href="convertisseur-unites.html">Utiliser</a>
+            </div>
+
+            <div class="tool">
+                <h2>Compteur de caractères</h2>
+                <a href="compteur-caracteres.html">Utiliser</a>
+            </div>
         </div>
     </main>
 

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de Code Couleur - UtilOutils</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        .color-box {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border: 1px solid #ccc;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Convertisseur de Code Couleur</h1>
+    </header>
+
+    <main>
+        <form id="colorConverter">
+            <label for="hex">Code Hexadécimal :</label>
+            <input type="text" id="hex" name="hex" placeholder="#FFFFFF" required>
+
+            <button type="submit">Convertir</button>
+        </form>
+
+        <div class="result" id="result" style="display:none;">
+            <div class="color-box" id="colorBox"></div>
+            <div id="colorInfo"></div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 UtilOutils. <a href="index.html" style="color: white;">Retour à l'accueil</a>
+    </footer>
+
+    <script>
+        function hexToRgb(hex) {
+            hex = hex.replace('#', '');
+            if (hex.length === 3) {
+                hex = hex.split('').map(char => char + char).join('');
+            }
+            const bigint = parseInt(hex, 16);
+            const r = (bigint >> 16) & 255;
+            const g = (bigint >> 8) & 255;
+            const b = bigint & 255;
+            return { r, g, b };
+        }
+
+        document.getElementById('colorConverter').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let hex = document.getElementById('hex').value.trim();
+            if (!/^#?[0-9A-Fa-f]{3,6}$/.test(hex)) {
+                document.getElementById('colorInfo').innerText = "Code hexadécimal invalide.";
+                document.getElementById('colorBox').style.backgroundColor = 'transparent';
+            } else {
+                hex = hex.startsWith('#') ? hex : `#${hex}`;
+                const rgb = hexToRgb(hex);
+                document.getElementById('colorBox').style.backgroundColor = hex;
+                document.getElementById('colorInfo').innerText = `Hex : ${hex} | RGB : (${rgb.r}, ${rgb.g}, ${rgb.b})`;
+            }
+            document.getElementById('result').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>

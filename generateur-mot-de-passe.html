@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Mot de Passe - UtilOutils</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        main {
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            font-size: 1.2em;
+            word-break: break-all;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Générateur de Mot de Passe</h1>
+    </header>
+
+    <main>
+        <form id="passwordGenerator">
+            <label for="length">Longueur du mot de passe :</label>
+            <input type="number" id="length" name="length" min="4" max="128" value="12" required>
+
+            <label>
+                <input type="checkbox" id="uppercase" checked> Inclure des lettres majuscules
+            </label>
+            <label>
+                <input type="checkbox" id="lowercase" checked> Inclure des lettres minuscules
+            </label>
+            <label>
+                <input type="checkbox" id="numbers" checked> Inclure des chiffres
+            </label>
+            <label>
+                <input type="checkbox" id="symbols"> Inclure des symboles
+            </label>
+
+            <button type="submit">Générer</button>
+        </form>
+
+        <div class="result" id="result" style="display:none;"></div>
+    </main>
+
+    <footer>
+        &copy; 2024 UtilOutils. <a href="index.html" style="color: white;">Retour à l'accueil</a>
+    </footer>
+
+    <script>
+        function generatePassword(length, useUpper, useLower, useNumbers, useSymbols) {
+            const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lower = 'abcdefghijklmnopqrstuvwxyz';
+            const numbers = '0123456789';
+            const symbols = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+            let all = '';
+            if (useUpper) all += upper;
+            if (useLower) all += lower;
+            if (useNumbers) all += numbers;
+            if (useSymbols) all += symbols;
+
+            if (all.length === 0) return '';
+
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += all.charAt(Math.floor(Math.random() * all.length));
+            }
+            return password;
+        }
+
+        document.getElementById('passwordGenerator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const length = parseInt(document.getElementById('length').value);
+            const useUpper = document.getElementById('uppercase').checked;
+            const useLower = document.getElementById('lowercase').checked;
+            const useNumbers = document.getElementById('numbers').checked;
+            const useSymbols = document.getElementById('symbols').checked;
+
+            const password = generatePassword(length, useUpper, useLower, useNumbers, useSymbols);
+            if (password === '') {
+                document.getElementById('result').innerText = "Veuillez sélectionner au moins une option.";
+            } else {
+                document.getElementById('result').innerText = `Mot de passe généré : ${password}`;
+            }
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

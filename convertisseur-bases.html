@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de Bases - UtilOutils</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Convertisseur de Bases</h1>
+    </header>
+
+    <main>
+        <form id="baseConverter">
+            <label for="number">Entrez le nombre :</label>
+            <input type="text" id="number" name="number" required>
+
+            <label for="fromBase">Base de départ :</label>
+            <select id="fromBase" name="fromBase">
+                <option value="2">Binaire (2)</option>
+                <option value="8">Octal (8)</option>
+                <option value="10" selected>Décimal (10)</option>
+                <option value="16">Hexadécimal (16)</option>
+            </select>
+
+            <label for="toBase">Convertir en :</label>
+            <select id="toBase" name="toBase">
+                <option value="2">Binaire (2)</option>
+                <option value="8">Octal (8)</option>
+                <option value="10">Décimal (10)</option>
+                <option value="16">Hexadécimal (16)</option>
+            </select>
+
+            <button type="submit">Convertir</button>
+        </form>
+
+        <div class="result" id="result" style="display:none;"></div>
+    </main>
+
+    <footer>
+        &copy; 2024 UtilOutils. <a href="index.html" style="color: white;">Retour à l'accueil</a>
+    </footer>
+
+    <script>
+        document.getElementById('baseConverter').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const number = document.getElementById('number').value.trim();
+            const fromBase = parseInt(document.getElementById('fromBase').value);
+            const toBase = parseInt(document.getElementById('toBase').value);
+            let decimal;
+
+            try {
+                decimal = parseInt(number, fromBase);
+                if (isNaN(decimal)) throw "Invalid number for the selected base.";
+            } catch (error) {
+                document.getElementById('result').innerText = "Erreur : " + error;
+                document.getElementById('result').style.display = 'block';
+                return;
+            }
+
+            let converted = decimal.toString(toBase).toUpperCase();
+            document.getElementById('result').innerText = `Résultat : ${converted}`;
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
