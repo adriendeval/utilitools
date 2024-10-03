@@ -3,36 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Compteur de Caractères - UtilOutils</title>
+    <!-- Lien vers Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="bg-primary text-white text-center py-4">
         <h1>Compteur de Caractères</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-bases.html">Convertisseur de bases</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="generateur-mot-de-passe.html">Générateur de mot de passe</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-couleur.html">Convertisseur de couleurs</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="calculatrice.html">Calculatrice</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-unites.html">Convertisseur d'unités</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="compteur-caracteres.html">Compteur de caractères</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <form id="charCounter">
-            <label for="text">Entrez votre texte :</label>
-            <textarea id="text" name="text" rows="10" placeholder="Tapez ou collez votre texte ici..." required></textarea>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="charCounterForm" class="bg-light p-4 rounded shadow">
+                    <div class="mb-3">
+                        <label for="textInput" class="form-label">Entrez votre texte :</label>
+                        <textarea class="form-control" id="textInput" rows="6" placeholder="Tapez ou collez votre texte ici..." required></textarea>
+                    </div>
 
-            <button type="submit">Compter</button>
-        </form>
+                    <button type="submit" class="btn btn-primary w-100">Compter les caractères</button>
+                </form>
 
-        <div class="result" id="result" style="display:none;"></div>
+                <div class="result alert alert-info mt-4 d-none" id="result"></div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        &copy; 2024 UtilOutils. <a href="index.html" style="color: white;">Retour à l'accueil</a>
+    <footer class="bg-primary text-white text-center py-3 mt-5">
+        <p>&copy; 2024 UtilOutils. Tous droits réservés. <a class="text-white" href="index.html">Retour à l'accueil</a></p>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('charCounter').addEventListener('submit', function(e) {
+        document.getElementById('charCounterForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const text = document.getElementById('text').value;
+            const text = document.getElementById('textInput').value.trim();
             const charCount = text.length;
+
             document.getElementById('result').innerText = `Nombre de caractères : ${charCount}`;
-            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').classList.remove('d-none');
         });
     </script>
 </body>

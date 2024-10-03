@@ -3,59 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Générateur de Mot de Passe - UtilOutils</title>
+    <!-- Lien vers Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="bg-primary text-white text-center py-4">
         <h1>Générateur de Mot de Passe</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-bases.html">Convertisseur de bases</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="generateur-mot-de-passe.html">Générateur de mot de passe</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-couleur.html">Convertisseur de couleurs</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="calculatrice.html">Calculatrice</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-unites.html">Convertisseur d'unités</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="compteur-caracteres.html">Compteur de caractères</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <form id="passwordGenerator">
-            <label for="length">Longueur du mot de passe :</label>
-            <input type="number" id="length" name="length" min="4" max="128" value="12" required>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="passwordGenerator" class="bg-light p-4 rounded shadow">
+                    <div class="mb-3">
+                        <label for="length" class="form-label">Longueur du mot de passe :</label>
+                        <input type="number" class="form-control" id="length" value="12" min="4" max="32">
+                    </div>
 
-            <label>
-                <input type="checkbox" id="uppercase" checked> Inclure des lettres majuscules
-            </label>
-            <label>
-                <input type="checkbox" id="lowercase" checked> Inclure des lettres minuscules
-            </label>
-            <label>
-                <input type="checkbox" id="numbers" checked> Inclure des chiffres
-            </label>
-            <label>
-                <input type="checkbox" id="symbols"> Inclure des symboles
-            </label>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="includeUppercase" checked>
+                            <label class="form-check-label" for="includeUppercase">Inclure des lettres majuscules</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="includeNumbers" checked>
+                            <label class="form-check-label" for="includeNumbers">Inclure des chiffres</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="includeSymbols" checked>
+                            <label class="form-check-label" for="includeSymbols">Inclure des symboles</label>
+                        </div>
+                    </div>
 
-            <button type="submit">Générer</button>
-        </form>
+                    <button type="submit" class="btn btn-primary w-100">Générer le mot de passe</button>
+                </form>
 
-        <div class="result" id="result" style="display:none;"></div>
+                <div class="result alert alert-info mt-4 d-none" id="generatedPassword"></div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        &copy; 2024 UtilOutils. <a href="index.html" style="color: white;">Retour à l'accueil</a>
+    <footer class="bg-primary text-white text-center py-3 mt-5">
+        <p>&copy; 2024 UtilOutils. Tous droits réservés. <a class="text-white" href="index.html">Retour à l'accueil</a></p>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function generatePassword(length, useUpper, useLower, useNumbers, useSymbols) {
-            const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const lower = 'abcdefghijklmnopqrstuvwxyz';
-            const numbers = '0123456789';
-            const symbols = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
-            let all = '';
-            if (useUpper) all += upper;
-            if (useLower) all += lower;
-            if (useNumbers) all += numbers;
-            if (useSymbols) all += symbols;
+        function generatePassword(length, includeUppercase, includeNumbers, includeSymbols) {
+            const lowercase = "abcdefghijklmnopqrstuvwxyz";
+            const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numbers = "0123456789";
+            const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
-            if (all.length === 0) return '';
+            let characterSet = lowercase;
+            if (includeUppercase) characterSet += uppercase;
+            if (includeNumbers) characterSet += numbers;
+            if (includeSymbols) characterSet += symbols;
 
-            let password = '';
+            let password = "";
             for (let i = 0; i < length; i++) {
-                password += all.charAt(Math.floor(Math.random() * all.length));
+                const randomIndex = Math.floor(Math.random() * characterSet.length);
+                password += characterSet[randomIndex];
             }
             return password;
         }
@@ -63,18 +85,13 @@
         document.getElementById('passwordGenerator').addEventListener('submit', function(e) {
             e.preventDefault();
             const length = parseInt(document.getElementById('length').value);
-            const useUpper = document.getElementById('uppercase').checked;
-            const useLower = document.getElementById('lowercase').checked;
-            const useNumbers = document.getElementById('numbers').checked;
-            const useSymbols = document.getElementById('symbols').checked;
+            const includeUppercase = document.getElementById('includeUppercase').checked;
+            const includeNumbers = document.getElementById('includeNumbers').checked;
+            const includeSymbols = document.getElementById('includeSymbols').checked;
 
-            const password = generatePassword(length, useUpper, useLower, useNumbers, useSymbols);
-            if (password === '') {
-                document.getElementById('result').innerText = "Veuillez sélectionner au moins une option.";
-            } else {
-                document.getElementById('result').innerText = `Mot de passe généré : ${password}`;
-            }
-            document.getElementById('result').style.display = 'block';
+            const generatedPassword = generatePassword(length, includeUppercase, includeNumbers, includeSymbols);
+            document.getElementById('generatedPassword').innerText = `Mot de passe généré : ${generatedPassword}`;
+            document.getElementById('generatedPassword').classList.remove('d-none');
         });
     </script>
 </body>

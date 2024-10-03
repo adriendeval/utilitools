@@ -4,44 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convertisseur de Bases - UtilOutils</title>
+    <!-- Lien vers Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="bg-primary text-white text-center py-4">
         <h1>Convertisseur de Bases</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-bases.html">Convertisseur de bases</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="generateur-mot-de-passe.html">Générateur de mot de passe</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-couleur.html">Convertisseur de couleurs</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="calculatrice.html">Calculatrice</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-unites.html">Convertisseur d'unités</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="compteur-caracteres.html">Compteur de caractères</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <form id="baseConverter">
-            <label for="number">Entrez le nombre :</label>
-            <input type="text" id="number" name="number" required>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="baseConverter" class="bg-light p-4 rounded shadow">
+                    <div class="mb-3">
+                        <label for="number" class="form-label">Entrez le nombre :</label>
+                        <input type="text" class="form-control" id="number" name="number" placeholder="Exemple : 1010" required>
+                    </div>
 
-            <label for="fromBase">Base de départ :</label>
-            <select id="fromBase" name="fromBase">
-                <option value="2">Binaire (2)</option>
-                <option value="8">Octal (8)</option>
-                <option value="10" selected>Décimal (10)</option>
-                <option value="16">Hexadécimal (16)</option>
-            </select>
+                    <div class="mb-3">
+                        <label for="fromBase" class="form-label">Base de départ :</label>
+                        <select class="form-select" id="fromBase" name="fromBase">
+                            <option value="2">Binaire (2)</option>
+                            <option value="8">Octal (8)</option>
+                            <option value="10" selected>Décimal (10)</option>
+                            <option value="16">Hexadécimal (16)</option>
+                        </select>
+                    </div>
 
-            <label for="toBase">Convertir en :</label>
-            <select id="toBase" name="toBase">
-                <option value="2">Binaire (2)</option>
-                <option value="8">Octal (8)</option>
-                <option value="10">Décimal (10)</option>
-                <option value="16">Hexadécimal (16)</option>
-            </select>
+                    <div class="mb-3">
+                        <label for="toBase" class="form-label">Convertir en :</label>
+                        <select class="form-select" id="toBase" name="toBase">
+                            <option value="2">Binaire (2)</option>
+                            <option value="8">Octal (8)</option>
+                            <option value="10">Décimal (10)</option>
+                            <option value="16">Hexadécimal (16)</option>
+                        </select>
+                    </div>
 
-            <button type="submit">Convertir</button>
-        </form>
+                    <button type="submit" class="btn btn-primary w-100">Convertir</button>
+                </form>
 
-        <div class="result" id="result" style="display:none;"></div>
+                <div class="result alert alert-info mt-4 d-none" id="result"></div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        &copy; 2024 UtilOutils. <a href="index.html">Retour à l'accueil</a>
+    <footer class="bg-primary text-white text-center py-3 mt-5">
+        <p>&copy; 2024 UtilOutils. Tous droits réservés. <a class="text-white" href="index.html">Retour à l'accueil</a></p>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('baseConverter').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -52,16 +77,16 @@
 
             try {
                 decimal = parseInt(number, fromBase);
-                if (isNaN(decimal)) throw "Invalid number for the selected base.";
+                if (isNaN(decimal)) throw "Nombre invalide pour la base sélectionnée.";
             } catch (error) {
                 document.getElementById('result').innerText = "Erreur : " + error;
-                document.getElementById('result').style.display = 'block';
+                document.getElementById('result').classList.remove('d-none');
                 return;
             }
 
             let converted = decimal.toString(toBase).toUpperCase();
             document.getElementById('result').innerText = `Résultat : ${converted}`;
-            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').classList.remove('d-none');
         });
     </script>
 </body>

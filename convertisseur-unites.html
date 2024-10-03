@@ -3,67 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Convertisseur d'Unités - UtilOutils</title>
+    <!-- Lien vers Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="bg-primary text-white text-center py-4">
         <h1>Convertisseur d'Unités</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-bases.html">Convertisseur de bases</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="generateur-mot-de-passe.html">Générateur de mot de passe</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-couleur.html">Convertisseur de couleurs</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="calculatrice.html">Calculatrice</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="convertisseur-unites.html">Convertisseur d'unités</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="compteur-caracteres.html">Compteur de caractères</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <form id="unitConverter">
-            <label for="value">Valeur :</label>
-            <input type="number" id="value" name="value" required>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="unitConverter" class="bg-light p-4 rounded shadow">
+                    <div class="mb-3">
+                        <label for="inputValue" class="form-label">Valeur à convertir :</label>
+                        <input type="number" class="form-control" id="inputValue" placeholder="Exemple : 100" required>
+                    </div>
 
-            <label for="fromUnit">De :</label>
-            <select id="fromUnit" name="fromUnit">
-                <option value="meters">Mètres</option>
-                <option value="kilometers">Kilomètres</option>
-                <option value="miles">Miles</option>
-                <option value="feet">Pieds</option>
-            </select>
+                    <div class="mb-3">
+                        <label for="fromUnit" class="form-label">Unité de départ :</label>
+                        <select class="form-select" id="fromUnit" required>
+                            <option value="km">Kilomètre (km)</option>
+                            <option value="m">Mètre (m)</option>
+                            <option value="cm">Centimètre (cm)</option>
+                            <option value="mm">Millimètre (mm)</option>
+                            <option value="mile">Mile</option>
+                            <option value="yard">Yard</option>
+                            <option value="foot">Pied (ft)</option>
+                            <option value="inch">Pouce (in)</option>
+                        </select>
+                    </div>
 
-            <label for="toUnit">À :</label>
-            <select id="toUnit" name="toUnit">
-                <option value="meters">Mètres</option>
-                <option value="kilometers">Kilomètres</option>
-                <option value="miles">Miles</option>
-                <option value="feet">Pieds</option>
-            </select>
+                    <div class="mb-3">
+                        <label for="toUnit" class="form-label">Convertir en :</label>
+                        <select class="form-select" id="toUnit" required>
+                            <option value="km">Kilomètre (km)</option>
+                            <option value="m">Mètre (m)</option>
+                            <option value="cm">Centimètre (cm)</option>
+                            <option value="mm">Millimètre (mm)</option>
+                            <option value="mile">Mile</option>
+                            <option value="yard">Yard</option>
+                            <option value="foot">Pied (ft)</option>
+                            <option value="inch">Pouce (in)</option>
+                        </select>
+                    </div>
 
-            <button type="submit">Convertir</button>
-        </form>
+                    <button type="submit" class="btn btn-primary w-100">Convertir</button>
+                </form>
 
-        <div class="result" id="result" style="display:none;"></div>
+                <div class="result alert alert-info mt-4 d-none" id="result"></div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        &copy; 2024 UtilOutils. <a href="index.html" style="color: white;">Retour à l'accueil</a>
+    <footer class="bg-primary text-white text-center py-3 mt-5">
+        <p>&copy; 2024 UtilOutils. Tous droits réservés. <a class="text-white" href="index.html">Retour à l'accueil</a></p>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const conversionRates = {
-            meters: { meters: 1, kilometers: 0.001, miles: 0.000621371, feet: 3.28084 },
-            kilometers: { meters: 1000, kilometers: 1, miles: 0.621371, feet: 3280.84 },
-            miles: { meters: 1609.34, kilometers: 1.60934, miles: 1, feet: 5280 },
-            feet: { meters: 0.3048, kilometers: 0.0003048, miles: 0.000189394, feet: 1 }
+            km: { m: 1000, cm: 100000, mm: 1000000, mile: 0.621371, yard: 1093.61, foot: 3280.84, inch: 39370.1 },
+            m: { km: 0.001, cm: 100, mm: 1000, mile: 0.000621371, yard: 1.09361, foot: 3.28084, inch: 39.3701 },
+            cm: { km: 0.00001, m: 0.01, mm: 10, mile: 0.0000062137, yard: 0.0109361, foot: 0.0328084, inch: 0.393701 },
+            mm: { km: 0.000001, m: 0.001, cm: 0.1, mile: 0.000000621371, yard: 0.00109361, foot: 0.00328084, inch: 0.0393701 },
+            mile: { km: 1.60934, m: 1609.34, cm: 160934, mm: 1609340, yard: 1760, foot: 5280, inch: 63360 },
+            yard: { km: 0.0009144, m: 0.9144, cm: 91.44, mm: 914.4, mile: 0.000568182, foot: 3, inch: 36 },
+            foot: { km: 0.0003048, m: 0.3048, cm: 30.48, mm: 304.8, mile: 0.000189394, yard: 0.333333, inch: 12 },
+            inch: { km: 0.0000254, m: 0.0254, cm: 2.54, mm: 25.4, mile: 0.0000157828, yard: 0.0277778, foot: 0.0833333 }
         };
 
         document.getElementById('unitConverter').addEventListener('submit', function(e) {
             e.preventDefault();
-            const value = parseFloat(document.getElementById('value').value);
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
             const fromUnit = document.getElementById('fromUnit').value;
             const toUnit = document.getElementById('toUnit').value;
 
-            if (isNaN(value)) {
-                document.getElementById('result').innerText = "Veuillez entrer une valeur valide.";
+            if (fromUnit === toUnit) {
+                document.getElementById('result').innerText = `Résultat : ${inputValue} ${toUnit}`;
             } else {
-                const rate = conversionRates[fromUnit][toUnit];
-                const convertedValue = value * rate;
-                document.getElementById('result').innerText = `${value} ${fromUnit} = ${convertedValue} ${toUnit}`;
+                const conversionRate = conversionRates[fromUnit][toUnit];
+                const convertedValue = (inputValue * conversionRate).toFixed(6);
+                document.getElementById('result').innerText = `Résultat : ${convertedValue} ${toUnit}`;
             }
-            document.getElementById('result').style.display = 'block';
+
+            document.getElementById('result').classList.remove('d-none');
         });
     </script>
 </body>
