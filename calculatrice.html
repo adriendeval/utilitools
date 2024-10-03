@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculatrice - UtilOutils</title>
-    <!-- Lien vers Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome pour les icônes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Style spécifique pour la calculatrice */
+        .btn-primary-custom {
+            background-color: #0069d9;
+            border-color: #0062cc;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;  /* Correction de la couleur du texte */
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #0056b3;
+            border-color: #004b9b;
+        }
+
         .calculator {
             max-width: 400px;
             margin: 0 auto;
@@ -48,7 +62,6 @@
     </style>
 </head>
 <body>
-    
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -58,32 +71,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="convertisseur-bases.html">Convertisseur de bases</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="generateur-mot-de-passe.html">Générateur de mot de passe</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="convertisseur-couleur.html">Convertisseur de couleurs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="calculatrice.html">Calculatrice</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="convertisseur-unites.html">Convertisseur d'unités</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="compteur-caracteres.html">Compteur de caractères</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="convertisseur-bases.html">Convertisseur de bases</a></li>
+                        <li class="nav-item"><a class="nav-link" href="generateur-mot-de-passe.html">Générateur de mot de passe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="convertisseur-couleur.html">Convertisseur de couleurs</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="calculatrice.html">Calculatrice</a></li>
+                        <li class="nav-item"><a class="nav-link" href="convertisseur-unites.html">Convertisseur d'unités</a></li>
+                        <li class="nav-item"><a class="nav-link" href="compteur-caracteres.html">Compteur de caractères</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </header>    
+    </header>
 
     <main class="container my-5">
         <div class="calculator bg-light p-4 rounded shadow">
@@ -108,7 +107,7 @@
                 <button class="btn btn-outline-secondary" onclick="appendValue('1')">1</button>
                 <button class="btn btn-outline-secondary" onclick="appendValue('2')">2</button>
                 <button class="btn btn-outline-secondary" onclick="appendValue('3')">3</button>
-                <button class="btn btn-primary" onclick="calculate()">=</button>
+                <button class="btn btn-primary-custom" onclick="calculate()">=</button>
 
                 <button class="btn btn-outline-secondary zero" onclick="appendValue('0')">0</button>
                 <button class="btn btn-outline-secondary" onclick="appendValue('.')">.</button>
@@ -116,8 +115,8 @@
         </div>
     </main>
 
-    <footer class="bg-primary text-white text-center py-3 mt-5">
-        <p>&copy; 2024 UtilOutils. Tous droits réservés. <a class="text-white" href="index.html">Retour à l'accueil</a></p>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 UtilOutils. Tous droits réservés.</p>
     </footer>
 
     <!-- Bootstrap JS -->
